@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace TestDrive
+namespace TestDrive.Views
 {
     public class Veiculo
     {
         public string nome { get; set; }
         public decimal preco { get; set; }
+        public string precoFormatado
+        {
+            get { return $"R$ {preco}"; }
+        }
     }
 
-    public partial class MainPage : ContentPage
+    public partial class ListagemView : ContentPage
     {
         public List<Veiculo> Veiculos { get; set; }
 
-        public MainPage()
+        public ListagemView()
         {
             InitializeComponent();
 
@@ -39,6 +39,12 @@ namespace TestDrive
             };
 
             this.BindingContext = this;
+        }
+
+        private void listViewVeiculos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var veiculo = (Veiculo)e.Item;
+            Navigation.PushAsync(new DetalheView(veiculo));
         }
     }
 }

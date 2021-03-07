@@ -10,7 +10,7 @@ namespace TestDrive
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new TestDrive.Views.ListagemView());
         }
 
         protected override void OnStart()
