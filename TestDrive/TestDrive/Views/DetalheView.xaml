@@ -4,10 +4,19 @@
              x:Class="TestDrive.Views.DetalheView"
              Title="{Binding Veiculo.nome}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Detalhes do veículo"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="25">
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="Acessórios">
+                        <SwitchCell Text="{Binding TextoFreioABS}" On="{Binding TemFreioAbs, Mode=TwoWay}"></SwitchCell>
+                        <SwitchCell Text="{Binding TextoArCond}" On="{Binding TemArCond, Mode=TwoWay}"></SwitchCell>
+                        <SwitchCell Text="{Binding TextoBancos}" On="{Binding TemBancos, Mode=TwoWay}"></SwitchCell>
+                        <SwitchCell Text="{Binding TextoMultimidia}" On="{Binding TemMultimidia, Mode=TwoWay}"></SwitchCell>
+                        <SwitchCell Text="{Binding TextoRodas}" On="{Binding TemRodas, Mode=TwoWay}"></SwitchCell>
+                        <TextCell Text="{Binding ValorTotal}"></TextCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
             <Button x:Name="buttonProximo" Text="Próximo"
                     VerticalOptions="End"
                     Clicked="buttonProximo_Clicked"></Button>
