@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +7,10 @@ using Xamarin.Forms;
 
 namespace TestDrive
 {
-    class Veiculo
+    public class Veiculo
     {
-        public string Nome { get; set; }
-        public decimal Preco { get; set; }
+        public string nome { get; set; }
+        public decimal preco { get; set; }
     }
 
     public partial class MainPage : ContentPage
@@ -21,18 +20,25 @@ namespace TestDrive
         public MainPage()
         {
             InitializeComponent();
-            this.Veiculos = new List<Veiculo>
+
+            this.Veiculos = new List<Veiculo>()
             {
-                new Veiculo { Nome = "Azera V6", Preco = 60000},
-                new Veiculo { Nome = "Fiesta 2.0", Preco = 50000},
-                new Veiculo { Nome = "HB20 S", Preco = 40000}
+                new Veiculo { nome = "Azera V6", preco = 85000 },
+                new Veiculo { nome = "Onix 1.6", preco = 35000 },
+                new Veiculo { nome = "Fiesta 2.0", preco = 52000 },
+                new Veiculo { nome = "C3 1.0", preco = 22000 },
+                new Veiculo { nome = "Uno Fire", preco = 11000 },
+                new Veiculo { nome = "Sentra 2.0", preco = 53000 },
+                new Veiculo { nome = "Astra Sedan", preco = 39000 },
+                new Veiculo { nome = "Vectra 2.0 Turbo", preco = 37000 },
+                new Veiculo { nome = "Hilux 4x4", preco = 90000 },
+                new Veiculo { nome = "Montana Cabine dupla", preco = 57000 },
+                new Veiculo { nome = "Outlander 2.4", preco = 99000 },
+                new Veiculo { nome = "Brasilia Amarela", preco = 9500 },
+                new Veiculo { nome = "Omega Hatch", preco = 8000 }
             };
-            listViewVeiculos.ItemsSource = new string[]
-            {
-                "Azera V6",
-                "Fiesta 2.0",
-                "HB20 S",
-            };
+
+            this.BindingContext = this;
         }
     }
 }
