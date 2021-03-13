@@ -45,9 +45,9 @@ namespace TestDrive.Views
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
                 if (temFreioAbs)
-                    DisplayAlert("Freio ABS", "Adicionados", "Ok");
+                    DisplayAlert("Freio ABS", "Adicionado", "Ok");
                 else
-                    DisplayAlert("Freio ABS", "Removidos", "Ok");
+                    DisplayAlert("Freio ABS", "Removido", "Ok");
             } 
         }
         bool temArCond;
@@ -63,9 +63,9 @@ namespace TestDrive.Views
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
                 if (temArCond)
-                    DisplayAlert("Ar Condicionado", "Adicionados", "Ok");
+                    DisplayAlert("Ar Condicionado", "Adicionado", "Ok");
                 else
-                    DisplayAlert("Ar Condicionado", "Removidos", "Ok");
+                    DisplayAlert("Ar Condicionado", "Removido", "Ok");
             }
         }
         bool temBancos;
@@ -81,9 +81,9 @@ namespace TestDrive.Views
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
                 if (temBancos)
-                    DisplayAlert("Bancos de Couro", "Adicionados", "Ok");
+                    DisplayAlert("Bancos de Couro", "Adicionado", "Ok");
                 else
-                    DisplayAlert("Bancos de Couro", "Removidos", "Ok");
+                    DisplayAlert("Bancos de Couro", "Removido", "Ok");
             }
         }
         bool temMultimidia;
@@ -99,9 +99,9 @@ namespace TestDrive.Views
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
                 if (temMultimidia)
-                    DisplayAlert("Multimídia", "Adicionados", "Ok");
+                    DisplayAlert("Multimídia", "Adicionado", "Ok");
                 else
-                    DisplayAlert("Multimídia", "Removidos", "Ok");
+                    DisplayAlert("Multimídia", "Removido", "Ok");
             }
         }
         bool temRodas;
@@ -117,9 +117,9 @@ namespace TestDrive.Views
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
                 if (temRodas)
-                    DisplayAlert("Rodas de Liga", "Adicionados", "Ok");
+                    DisplayAlert("Rodas de Liga", "Adicionado", "Ok");
                 else
-                    DisplayAlert("Rodas de Liga", "Removidos", "Ok");
+                    DisplayAlert("Rodas de Liga", "Removido", "Ok");
             }
         }
 
