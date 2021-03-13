@@ -7,11 +7,13 @@ namespace TestDrive.Views
     {
         public string nome { get; set; }
         public decimal preco { get; set; }
-        public string precoFormatado { 
-            get{
+        public string precoFormatado
+        {
+            get
+            {
                 return string.Format("R$ {0}", preco);
-            } 
-        }   
+            }
+        }
     }
 
     public partial class ListagemView : ContentPage

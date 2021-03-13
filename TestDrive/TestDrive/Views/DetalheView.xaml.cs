@@ -14,33 +14,51 @@ namespace TestDrive.Views
 
         public Veiculo Veiculo { get; set; }
 
-        public string TextoFreioABS { get
+        public string TextoFreioABS
+        {
+            get
             {
                 return string.Format("Freio ABS - R$ {0}", FREIO_ABS);
-            } }
-        public string TextoArCond { get
+            }
+        }
+        public string TextoArCond
+        {
+            get
             {
                 return string.Format("Ar Condicionado - R$ {0}", AR_CONDICIONADO);
-            } }
-        public string TextoBancos { get
+            }
+        }
+        public string TextoBancos
+        {
+            get
             {
                 return string.Format("Bancos de Couro - R$ {0}", BANCOS_COURO);
-            } }
-        public string TextoMultimidia { get
+            }
+        }
+        public string TextoMultimidia
+        {
+            get
             {
                 return string.Format("Multimídia - R${0}", MULTIMIDIA);
-            } }
-        public string TextoRodas { get
+            }
+        }
+        public string TextoRodas
+        {
+            get
             {
                 return string.Format("Rodas de Liga - R$ {0}", RODAS_LIGA);
-            } }
+            }
+        }
 
         bool temFreioAbs;
-        public bool TemFreioAbs { 
-            get {
+        public bool TemFreioAbs
+        {
+            get
+            {
                 return temFreioAbs;
-            } 
-            set { 
+            }
+            set
+            {
                 temFreioAbs = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
@@ -48,7 +66,7 @@ namespace TestDrive.Views
                     DisplayAlert("Freio ABS", "Adicionado", "Ok");
                 else
                     DisplayAlert("Freio ABS", "Removido", "Ok");
-            } 
+            }
         }
         bool temArCond;
         public bool TemArCond
