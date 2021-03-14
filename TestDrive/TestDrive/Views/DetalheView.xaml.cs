@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using TestDrive.Models;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TestDrive.Views
@@ -6,11 +7,7 @@ namespace TestDrive.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetalheView : ContentPage
     {
-        private const int FREIO_ABS = 800;
-        private const int AR_CONDICIONADO = 1500;
-        private const int BANCOS_COURO = 900;
-        private const int MULTIMIDIA = 700;
-        private const int RODAS_LIGA = 900;
+        
 
         public Veiculo Veiculo { get; set; }
 
@@ -18,123 +15,122 @@ namespace TestDrive.Views
         {
             get
             {
-                return string.Format("Freio ABS - R$ {0}", FREIO_ABS);
+                return string.Format("Freio ABS - R$ {0}", Veiculo.FREIO_ABS);
             }
         }
         public string TextoArCond
         {
             get
             {
-                return string.Format("Ar Condicionado - R$ {0}", AR_CONDICIONADO);
+                return string.Format("Ar Condicionado - R$ {0}", Veiculo.AR_CONDICIONADO);
             }
         }
         public string TextoBancos
         {
             get
             {
-                return string.Format("Bancos de Couro - R$ {0}", BANCOS_COURO);
+                return string.Format("Bancos de Couro - R$ {0}", Veiculo.BANCOS_COURO);
             }
         }
         public string TextoMultimidia
         {
             get
             {
-                return string.Format("Multimídia - R${0}", MULTIMIDIA);
+                return string.Format("Multimídia - R${0}", Veiculo.MULTIMIDIA);
             }
         }
         public string TextoRodas
         {
             get
             {
-                return string.Format("Rodas de Liga - R$ {0}", RODAS_LIGA);
+                return string.Format("Rodas de Liga - R$ {0}", Veiculo.RODAS_LIGA);
             }
         }
 
-        bool temFreioAbs;
         public bool TemFreioAbs
         {
             get
             {
-                return temFreioAbs;
+                return Veiculo.temFreioAbs;
             }
             set
             {
-                temFreioAbs = value;
+                Veiculo.temFreioAbs = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
-                if (temFreioAbs)
+                if (Veiculo.temFreioAbs)
                     DisplayAlert("Freio ABS", "Adicionado", "Ok");
                 else
                     DisplayAlert("Freio ABS", "Removido", "Ok");
             }
         }
-        bool temArCond;
+        
         public bool TemArCond
         {
             get
             {
-                return temArCond;
+                return Veiculo.temArCond;
             }
             set
             {
-                temArCond = value;
+                Veiculo.temArCond = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
-                if (temArCond)
+                if (Veiculo.temArCond)
                     DisplayAlert("Ar Condicionado", "Adicionado", "Ok");
                 else
                     DisplayAlert("Ar Condicionado", "Removido", "Ok");
             }
         }
-        bool temBancos;
+        
         public bool TemBancos
         {
             get
             {
-                return temBancos;
+                return Veiculo.temBancos;
             }
             set
             {
-                temBancos = value;
+                Veiculo.temBancos = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
-                if (temBancos)
+                if (Veiculo.temBancos)
                     DisplayAlert("Bancos de Couro", "Adicionado", "Ok");
                 else
                     DisplayAlert("Bancos de Couro", "Removido", "Ok");
             }
         }
-        bool temMultimidia;
+        
         public bool TemMultimidia
         {
             get
             {
-                return temMultimidia;
+                return Veiculo.temMultimidia;
             }
             set
             {
-                temMultimidia = value;
+                Veiculo.temMultimidia = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
-                if (temMultimidia)
+                if (Veiculo.temMultimidia)
                     DisplayAlert("Multimídia", "Adicionado", "Ok");
                 else
                     DisplayAlert("Multimídia", "Removido", "Ok");
             }
         }
-        bool temRodas;
+        
         public bool TemRodas
         {
             get
             {
-                return temRodas;
+                return Veiculo.temRodas;
             }
             set
             {
-                temRodas = value;
+                Veiculo.temRodas = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ValorTotal));
-                if (temRodas)
+                if (Veiculo.temRodas)
                     DisplayAlert("Rodas de Liga", "Adicionado", "Ok");
                 else
                     DisplayAlert("Rodas de Liga", "Removido", "Ok");
@@ -145,13 +141,7 @@ namespace TestDrive.Views
         {
             get
             {
-                return string.Format("Valor Total: R$ {0}",
-                    Veiculo.preco
-                    + (TemFreioAbs ? FREIO_ABS : 0)
-                    + (TemArCond ? AR_CONDICIONADO : 0)
-                    + (TemBancos ? BANCOS_COURO : 0)
-                    + (TemMultimidia ? MULTIMIDIA : 0)
-                    + (TemRodas ? RODAS_LIGA : 0));
+                return Veiculo.PrecoTotalFormatado;
             }
         }
         public DetalheView(Veiculo veiculo)
