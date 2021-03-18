@@ -25,7 +25,7 @@ namespace TestDrive.Views
                 {
                     DisplayAlert("Agendamento",
                     string.Format(@"Veiculo: {0}
-                    Nome: {1}
+                    nome: {1}
                     Fone: {2}
                     Email: {3}
                     Data do Agendamento: {4}

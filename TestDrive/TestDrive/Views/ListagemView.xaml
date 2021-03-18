@@ -4,25 +4,25 @@
              xmlns:vm="clr-namespace:TestDrive.ViewModel"
              Title="TestDrive"
              x:Class="TestDrive.Views.ListagemView">
-    <ContentPage.BindingContext>
-        <vm:ListagemViewModel></vm:ListagemViewModel>
-    </ContentPage.BindingContext>
-    <StackLayout>
-            <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}" Margin="25"
+    <StackLayout Margin="25">
+        <ActivityIndicator IsRunning="{Binding Aguarde}" 
+                           IsVisible="{Binding Aguarde}">
+        </ActivityIndicator>
+        <ListView x:Name="listViewVeiculos" ItemsSource="{Binding Veiculos}" 
               SelectedItem="{Binding VeiculoSelecionado}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding nome}" FontSize="20" VerticalTextAlignment="Center"></Label>
-                                    <Label Text=" - " VerticalTextAlignment="Center"></Label>
-                                    <Label Text="{Binding precoFormatado}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding nome}" FontSize="20" VerticalTextAlignment="Center"></Label>
+                                <Label Text=" - " VerticalTextAlignment="Center"></Label>
+                                <Label Text="{Binding precoFormatado}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

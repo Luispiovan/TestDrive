@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TestDrive.Models;
 using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
-    public class DetalheViewModel : INotifyPropertyChanged
+    public class DetalheViewModel : BaseViewModel
     {
         public Veiculo Veiculo { get; set; }
 
@@ -154,12 +149,6 @@ namespace TestDrive.ViewModels
             {
                 MessagingCenter.Send(veiculo, "Proximo");
             });
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public ICommand ProximoCommand { get; set; }
