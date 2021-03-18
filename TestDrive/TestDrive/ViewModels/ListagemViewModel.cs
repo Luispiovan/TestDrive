@@ -50,7 +50,6 @@ namespace TestDrive.ViewModel
             Aguarde = true;
             HttpClient cliente = new HttpClient();
             var request = await cliente.GetStringAsync(URL_GET_VEICULOS);
-
             var veiculosJson = JsonConvert.DeserializeObject<VeiculoJson[]>(request);
 
             foreach(var veiculoJson in veiculosJson)
