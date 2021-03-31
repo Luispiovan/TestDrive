@@ -6,7 +6,7 @@ namespace TestDrive.Views
 {
 
     public partial class ListagemView : ContentPage
-    {     
+    {
         public ListagemView()
         {
             InitializeComponent();
@@ -14,7 +14,7 @@ namespace TestDrive.Views
             this.BindingContext = this.ViewModel;
         }
 
-        public ListagemViewModel ViewModel
+        ListagemViewModel ViewModel
         {
             get { return ViewModel; }
             set { ViewModel = value; }
