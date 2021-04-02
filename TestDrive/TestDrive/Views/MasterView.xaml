@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestDrive.Views.MasterView"
+             Title="Perfil">
+    <TabbedPage.Children>
+        <ContentPage Title="Usuário">
+            <Frame OutlineColor="Silver" Margin="15" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="{Binding Nome}"></Label>
+                    <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill"></BoxView>
+                    <Label Text="{Binding Email}"></Label>
+                    <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill"></BoxView>
+                    <Button Text="Perfil"></Button>
+                    <Button Text="Meus Agendamentos"></Button>
+                    <Button Text="Novo Agendamento"></Button>
+                </StackLayout>
+            </Frame>
+        </ContentPage>
+        <ContentPage Title="Editar">
+            <Label Text="Edição"></Label>
+        </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>
