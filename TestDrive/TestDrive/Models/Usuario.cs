@@ -3,10 +3,10 @@
     public class Usuario
     {
         public int id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string DataNasc { get; set; }
-        public string Telefone { get; set; }
+        public string nome { get; set; }
+        public string email { get; set; }
+        public string dataNasc { get; set; }
+        public string telefone { get; set; }
     }
 
     public class ResultadoLogin
