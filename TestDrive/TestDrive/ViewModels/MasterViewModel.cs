@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using TestDrive.Media;
 using TestDrive.Models;
 using Xamarin.Forms;
 
@@ -33,6 +34,14 @@ namespace TestDrive.ViewModels
             set { this.usuario.dataNasc = value; }
         }
 
+        private ImageSource fotoPerfil = "perfil.png";
+        public ImageSource FotoPerfil
+        {
+            get { return fotoPerfil; }
+            private set { fotoPerfil = value; }
+        }
+
+
         private bool editando = false;
         public bool Editando
         {
@@ -50,6 +59,7 @@ namespace TestDrive.ViewModels
         public ICommand EditarPerfilCommand { get; private set; }
         public ICommand EditarCommand { get; private set; }
         public ICommand SalvarCommand { get; private set; }
+        public ICommand TirarFotoCommand { get; private set; }
 
         public MasterViewModel(Usuario usuario)
         {
@@ -74,6 +84,11 @@ namespace TestDrive.ViewModels
             {
                 this.Editando = false;
                 MessagingCenter.Send<Usuario>(usuario, "SucessoSalvarUsuario");
+            });
+
+            TirarFotoCommand = new Command(() =>
+            {
+                DependencyService.Get<ICamera>().TirarFoto();
             });
         }
     }
