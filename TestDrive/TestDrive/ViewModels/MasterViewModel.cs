@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 using TestDrive.Media;
@@ -38,7 +39,11 @@ namespace TestDrive.ViewModels
         public ImageSource FotoPerfil
         {
             get { return fotoPerfil; }
-            private set { fotoPerfil = value; }
+            private set 
+            { 
+                fotoPerfil = value;
+                OnPropertyChanged();
+            }
         }
 
 
@@ -90,6 +95,13 @@ namespace TestDrive.ViewModels
             {
                 DependencyService.Get<ICamera>().TirarFoto();
             });
+
+            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada",
+                (bytes) =>
+                {
+                    FotoPerfil = ImageSource.FromStream(
+                        () => new MemoryStream(bytes));
+                });
         }
     }
 }

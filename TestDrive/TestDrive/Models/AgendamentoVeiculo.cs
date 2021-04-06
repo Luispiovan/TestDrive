@@ -6,14 +6,29 @@ namespace TestDrive.Models
 {
     public class AgendamentoVeiculo
     {
-        public Veiculo Veiculo { get; set; }
-        public string Nome { get; set; }
-        public string Fone { get; set; }
-        public string Email { get; set; }
+        public string Nome { get;  set; }
+        public string Fone { get;  set; }
+        public string Email { get;  set; }
+        public string Modelo { get;  set; }
+        public decimal Preco { get;  set; }
 
-        public DateTime DataAgendamento = DateTime.Today;
+        DateTime dataAgendamento = DateTime.Today;
+        public DateTime DataAgendamento
+        {
+            get { return dataAgendamento; }
+             set { dataAgendamento = value; }
+        }
 
-        public TimeSpan HoraAgendamento;
+        public TimeSpan HoraAgendamento { get;  set; }
+
+        public AgendamentoVeiculo(string nome, string fone, string email, string modelo, decimal preco)
+        {
+            this.Nome = nome;
+            this.Fone = fone;
+            this.Email = email;
+            this.Modelo = modelo;
+            this.Preco = preco;
+        }
     }
 
 }
