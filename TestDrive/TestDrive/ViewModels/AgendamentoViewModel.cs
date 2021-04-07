@@ -6,6 +6,7 @@ using System.Windows.Input;
 using TestDrive.Data;
 using TestDrive.Models;
 using Xamarin.Forms;
+using SQLite;
 
 namespace TestDrive.ViewModels
 {
@@ -103,7 +104,7 @@ namespace TestDrive.ViewModels
             using (var conexao = DependencyService.Get<ISQLite>().PegarConexao())
             {
                 AgendamentoDAO dao = new AgendamentoDAO(conexao);
-                dao.Salvar(new AgendamentoVeiculo(Nome, Fone, Email, Modelo, Preco));
+                dao.Salvar(new AgendamentoVeiculo(Nome, Fone, Email, Modelo, Preco, DataAgendamento, HoraAgendamento));
             }
         }
 

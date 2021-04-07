@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Data.Sqlite;
+using SQLite;
 using TestDrive.Data;
 using TestDrive.Droid;
 
@@ -19,12 +19,11 @@ namespace TestDrive.Droid
     {
         private const string nomeArquivoDB = "Agendamento.db3";
 
-        public SqliteConnection PegarConexao()
+        public SQLiteConnection PegarConexao()
         {
-            var caminhoDB = Path.Combine( Androir.OS.Environment.ExternalStorageDirectory.Path,
+            var caminhoDB = Path.Combine( Android.OS.Environment.ExternalStorageDirectory.Path,
                 nomeArquivoDB);
             return new Sqlite.SqliteConnection(caminhoDB);
         }
     }
-}
 }

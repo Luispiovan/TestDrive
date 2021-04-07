@@ -1,13 +1,13 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using SQLite;
 using TestDrive.Models;
 
 namespace TestDrive.Data
 {
     public class AgendamentoDAO
     {
-        readonly SqliteConnection conexao;
+        readonly SQLiteConnection conexao;
 
-        public AgendamentoDAO(SqliteConnection conexao)
+        public AgendamentoDAO(SQLiteConnection conexao)
         {
             this.conexao = conexao;
             this.conexao.CreateTable<AgendamentoVeiculo>();

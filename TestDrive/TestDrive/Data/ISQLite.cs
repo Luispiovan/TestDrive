@@ -1,9 +1,9 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using SQLite;
 
 namespace TestDrive.Data
 {
     public interface ISQLite
     {
-        SqliteConnection PegarConexao();
+        SQLiteConnection PegarConexao();
     }
 }

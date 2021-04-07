@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace TestDrive.ViewModels
 {
-    class MasterViewModel: BaseViewModel
+    class MasterViewModel : BaseViewModel
     {
         public string Nome
         {
@@ -39,8 +39,8 @@ namespace TestDrive.ViewModels
         public ImageSource FotoPerfil
         {
             get { return fotoPerfil; }
-            private set 
-            { 
+            private set
+            {
                 fotoPerfil = value;
                 OnPropertyChanged();
             }
@@ -51,8 +51,8 @@ namespace TestDrive.ViewModels
         public bool Editando
         {
             get { return editando; }
-            private set 
-            { 
+            private set
+            {
                 editando = value;
                 OnPropertyChanged(nameof(Editando));
             }
@@ -65,12 +65,23 @@ namespace TestDrive.ViewModels
         public ICommand EditarCommand { get; private set; }
         public ICommand SalvarCommand { get; private set; }
         public ICommand TirarFotoCommand { get; private set; }
+        public ICommand MeusAgendamentosCommand { get; private set; }
 
         public MasterViewModel(Usuario usuario)
         {
             this.usuario = usuario;
 
             DefinirComandos(usuario);
+            AssinarMensagens();
+        }
+
+        private void AssinarMensagens()
+        {
+            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada",
+                            (bytes) =>
+                            {
+                                FotoPerfil = ImageSource.FromStream(() => new MemoryStream(bytes));
+                            });
         }
 
         private void DefinirComandos(Usuario usuario)
@@ -96,12 +107,10 @@ namespace TestDrive.ViewModels
                 DependencyService.Get<ICamera>().TirarFoto();
             });
 
-            MessagingCenter.Subscribe<byte[]>(this, "FotoTirada",
-                (bytes) =>
-                {
-                    FotoPerfil = ImageSource.FromStream(
-                        () => new MemoryStream(bytes));
-                });
+            MeusAgendamentosCommand = new Command(() =>
+            {
+                MessagingCenter.Send<Usuario>(usuario, "MeusAgendamentos");
+            });
         }
     }
 }

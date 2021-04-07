@@ -20,37 +20,44 @@ namespace TestDrive.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            AssinarMensagens();
+        }
+
+        private void AssinarMensagens()
+        {
             MessagingCenter.Subscribe<AgendamentoVeiculo>(this, "Agendamento",
+                            async (msg) =>
+                            {
+                                var confirma = await DisplayAlert("Salvar Agendamento",
+                                    "Deseja confirmar o agendamento?",
+                                    "SIM", "NÃO");
+
+                                if (confirma)
+                                {
+                                    this.ViewModel.SalvarAgendamento();
+                                    //DisplayAlert("Agendamento",
+                                    //string.Format(@"Veiculo: {0}
+                                    //nome: {1}
+                                    //Fone: {2}
+                                    //Email: {3}
+                                    //Data do Agendamento: {4}
+                                    //Hora do Agendamento: {5}", ViewModel.Agendamento.Veiculo.nome,
+                                    //ViewModel.Agendamento.Nome, ViewModel.Agendamento.Fone,
+                                    //ViewModel.Agendamento.Email, ViewModel.Agendamento.DataAgendamento.ToString("dd/MM/yyyy"),
+                                    //ViewModel.Agendamento.HoraAgendamento), "OK");
+                                }
+                            });
+            MessagingCenter.Subscribe<AgendamentoVeiculo>(this, "SucessoAgendamento",
                 async (msg) =>
                 {
-                    var confirma = await DisplayAlert("Salvar Agendamento",
-                        "Deseja confirmar o agendamento?",
-                        "SIM", "NÃO");
-
-                    if (confirma)
-                    {
-                        this.ViewModel.SalvarAgendamento();
-                        //DisplayAlert("Agendamento",
-                        //string.Format(@"Veiculo: {0}
-                        //nome: {1}
-                        //Fone: {2}
-                        //Email: {3}
-                        //Data do Agendamento: {4}
-                        //Hora do Agendamento: {5}", ViewModel.Agendamento.Veiculo.nome,
-                        //ViewModel.Agendamento.Nome, ViewModel.Agendamento.Fone,
-                        //ViewModel.Agendamento.Email, ViewModel.Agendamento.DataAgendamento.ToString("dd/MM/yyyy"),
-                        //ViewModel.Agendamento.HoraAgendamento), "OK");
-                    }
-                });
-            MessagingCenter.Subscribe<AgendamentoVeiculo>(this, "SucessoAgendamento",
-                (msg) => 
-                {
-                    DisplayAlert("Agendamento", "Agendamento salvo com sucesso!","ok");
+                    await DisplayAlert("Agendamento", "Agendamento salvo com sucesso!", "ok");
+                    await Navigation.PopToRootAsync();
                 });
             MessagingCenter.Subscribe<ArgumentException>(this, "FalhaAgendamento",
-                (msg) =>
+                async (msg) =>
                 {
-                    DisplayAlert("Agendamento", "Falha ao agendar o Test Drive! Verifique os dados e tente novamente mais tarde!", "ok");
+                    await DisplayAlert("Agendamento", "Falha ao agendar o Test Drive! Verifique os dados e tente novamente mais tarde!", "ok");
+                    await Navigation.PopToRootAsync();
                 });
         }
 
