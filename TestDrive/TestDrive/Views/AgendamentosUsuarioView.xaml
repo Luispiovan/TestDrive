@@ -1,16 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:TestDrive.Converters"
              x:Class="TestDrive.Views.AgendamentosUsuarioView">
-    <ListView x:Name="listViewAgendamentos" Margin="25">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AgendamentoConfirmadoConverter x:Key="confirmado"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ListView ItemsSource="{Binding Lista}" Margin="25" SelectedItem="{Binding AgendamentoSelecionado}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.View>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Modelo}" FontAttributes="Bold" VerticalOptions="Center"></Label>
-                            <Label Text=" - " VerticalOptions="Center"></Label>
-                            <Label Text="{Binding DataFormatada}" FontSize="20" VerticalOptions="Center"></Label>
+                            <Label Text="{Binding Modelo}" FontAttributes="Bold" VerticalOptions="Center" TextColor="{Binding Confirmado, Converter={StaticResource Key=confirmado}}"></Label>
+                            <Label Text=" - " VerticalOptions="Center" TextColor="{Binding Confirmado, Converter={StaticResource Key=confirmado}}"></Label>
+                            <Label Text="{Binding DataFormatada}" FontSize="20" VerticalOptions="Center" TextColor="{Binding Confirmado, Converter={StaticResource Key=confirmado}}"></Label>
+                            <!--<Button Text="Novo Agendamento" Command="{Binding NovoAgendamentoCommand}"></Button>-->
                         </StackLayout>
                     </ViewCell.View>
                 </ViewCell>

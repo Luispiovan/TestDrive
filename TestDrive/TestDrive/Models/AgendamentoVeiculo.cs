@@ -12,6 +12,7 @@ namespace TestDrive.Models
         public string Email { get;  set; }
         public string Modelo { get;  set; }
         public decimal Preco { get;  set; }
+        public bool Confirmado { get; set; }
 
         DateTime dataAgendamento = DateTime.Today;
         public DateTime DataAgendamento
@@ -25,6 +26,10 @@ namespace TestDrive.Models
         public string DataFormatada
         {
             get { return DataAgendamento.Add(HoraAgendamento).ToString("dd/MM/yyyy  HH:mm"); }
+        }
+
+        public AgendamentoVeiculo()
+        {
         }
 
         public AgendamentoVeiculo(string nome, string fone, string email, string modelo, decimal preco, DateTime dataAgendamento, TimeSpan horaAgendamento)

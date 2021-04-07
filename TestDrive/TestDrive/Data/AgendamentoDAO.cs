@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System.Collections.Generic;
 using TestDrive.Models;
 
 namespace TestDrive.Data
@@ -6,6 +7,16 @@ namespace TestDrive.Data
     public class AgendamentoDAO
     {
         readonly SQLiteConnection conexao;
+
+        private List<AgendamentoVeiculo> lista;
+        public List<AgendamentoVeiculo> Lista
+        {
+            get 
+            {
+                return conexao.Table<AgendamentoVeiculo>().ToList();
+            }
+            private set { lista = value; }
+        }
 
         public AgendamentoDAO(SQLiteConnection conexao)
         {
@@ -15,7 +26,14 @@ namespace TestDrive.Data
 
         public void Salvar(AgendamentoVeiculo agendamento)
         {
-            conexao.Insert(agendamento);
+            if (conexao.Find<AgendamentoVeiculo>(agendamento.ID) == null)
+            {
+                conexao.Insert(agendamento);
+            }
+            else
+            {
+                conexao.Update(agendamento);
+            }
         }
     }
 }

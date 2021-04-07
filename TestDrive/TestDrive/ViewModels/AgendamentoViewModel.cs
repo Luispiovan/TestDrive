@@ -7,12 +7,13 @@ using TestDrive.Data;
 using TestDrive.Models;
 using Xamarin.Forms;
 using SQLite;
+using System.Threading.Tasks;
+using TestDrive.Services;
 
 namespace TestDrive.ViewModels
 {
     public class AgendamentoViewModel : BaseViewModel
     {
-        const string URL_POST_AGENDAMENTO = "http://aluracar.herokuapp.com/salvaragendamento";
         public AgendamentoVeiculo Agendamento { get; set; }
 
         public string Modelo
@@ -70,42 +71,8 @@ namespace TestDrive.ViewModels
 
         public async void SalvarAgendamento()
         {
-            HttpClient cliente = new HttpClient();
-
-            var dataHoraAgendamento = new DateTime(
-                DataAgendamento.Year, DataAgendamento.Month, DataAgendamento.Day,
-                DataAgendamento.Hour, DataAgendamento.Minute, DataAgendamento.Second);
-            var json = JsonConvert.SerializeObject(new
-            {
-                nome = Nome,
-                fone = Fone,
-                email = Email,
-                carro = Modelo,
-                preco = Preco,
-                dataAgendamento = dataHoraAgendamento,
-            });
-
-            var conteudo = new StringContent(json, Encoding.UTF8, "application/json");
-            var resposta = await cliente.PostAsync(URL_POST_AGENDAMENTO, conteudo);
-            SalvarAgendamentoDB();
-
-            if (resposta.IsSuccessStatusCode)
-            {
-                MessagingCenter.Send<AgendamentoVeiculo>(this.Agendamento, "SucessoAgendamento");
-            }
-            else
-            {
-                MessagingCenter.Send<ArgumentException>(new ArgumentException(), "FalhaAgendamento");
-            }
-        }
-
-        private void SalvarAgendamentoDB()
-        {
-            using (var conexao = DependencyService.Get<ISQLite>().PegarConexao())
-            {
-                AgendamentoDAO dao = new AgendamentoDAO(conexao);
-                dao.Salvar(new AgendamentoVeiculo(Nome, Fone, Email, Modelo, Preco, DataAgendamento, HoraAgendamento));
-            }
+            AgendamentoService agendamentoService = new AgendamentoService();
+            await agendamentoService.EnviarAgendamento(this.Agendamento);
         }
 
         public AgendamentoViewModel(Veiculo veiculo, Usuario usuario)
@@ -123,7 +90,5 @@ namespace TestDrive.ViewModels
         }
 
         public ICommand AgendarCommand { get; set; }
-
-
     }
 }

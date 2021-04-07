@@ -19,10 +19,22 @@ namespace TestDrive.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            AssinarMensagens();
+        }
+
+        private void AssinarMensagens()
+        {
             MessagingCenter.Subscribe<Usuario>(this, "MeusAgendamentos",
+                            (usuario) =>
+                            {
+                                this.Detail = new NavigationPage(new AgendamentosUsuarioView());
+                                this.IsPresented = false;
+                            });
+
+            MessagingCenter.Subscribe<Usuario>(this, "NovoAgendamento",
                 (usuario) =>
                 {
-                    this.Detail = new NavigationPage(new AgendamentosUsuarioView());
+                    this.Detail = new NavigationPage(new ListagemView(usuario));
                     this.IsPresented = false;
                 });
         }
@@ -30,7 +42,13 @@ namespace TestDrive.Views
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+            CancelarAssinaturas();
+        }
+
+        private void CancelarAssinaturas()
+        {
             MessagingCenter.Unsubscribe<Usuario>(this, "MeusAgendamentos");
+            MessagingCenter.Unsubscribe<Usuario>(this, "NovoAgendamento");
         }
     }
 }
